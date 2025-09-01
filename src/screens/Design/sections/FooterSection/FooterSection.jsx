@@ -26,7 +26,8 @@ export const FooterSection = () => {
   const legalLinks = ["Copyright", "Privacy", "All rights reserved"];
 
   return (
-    <footer className="flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-16 px-4 md:px-8 lg:px-16 py-8 md:py-12 relative self-stretch w-full flex-[0_0_auto] bg-black border-t border-[#ffffff33] max-w-screen-2xl mx-auto">
+    <footer className="flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-16 px-4 md:px-8 lg:px-16 py-8 md:py-12 relative self-stretch w-full flex-[0_0_auto] bg-black border-t border-[#ffffff33]">
+      <div className="w-full max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-16">
       <div className="flex flex-col w-full lg:w-[528px] min-h-[400px] lg:min-h-[582px] items-start lg:items-end justify-between relative">
         <div className="flex items-start gap-6 self-stretch w-full flex-[0_0_auto] flex-col relative">
           <div className="relative w-fit mt-[-1.00px] opacity-40 [font-family:'Poppins',Helvetica] font-normal text-shades-0 text-xs tracking-[0] leading-[18px]">
@@ -84,7 +85,7 @@ export const FooterSection = () => {
         <div className="flex flex-col items-start gap-8 md:gap-16 relative flex-[0_0_auto] w-full">
           <div className="flex w-full lg:w-[752px] items-start justify-start gap-8 lg:gap-[180px] relative flex-[0_0_auto]">
             <div className="flex min-h-[87px] items-start justify-between flex-1 grow flex-col relative">
-              <div className="relative w-fit mt-[-1.00px] opacity-40 [font-family:'Poppins',Helvetica] font-normal text-shades-0 text-xs tracking-[0] leading-[18px]">
+        <div className="flex flex-col items-start gap-8 md:gap-12 lg:gap-16 xl:gap-48 relative flex-[0_0_auto] w-full lg:w-auto">
                 Contact us
               </div>
 
@@ -96,7 +97,7 @@ export const FooterSection = () => {
                       className={`${
                         index === 0 ? "mt-[-1.00px]" : ""
                       } relative w-fit opacity-80 [font-family:'Poppins',Helvetica] font-normal text-shades-0 text-sm tracking-[0] leading-[19.6px] hover:opacity-100 transition-opacity cursor-pointer`}
-                    >
+            <div className="flex w-full items-start justify-start gap-8 lg:gap-[180px] relative flex-[0_0_auto] flex-col lg:flex-row">
                       {phone}
                     </div>
                   ))}
@@ -215,7 +216,12 @@ export const FooterSection = () => {
           <div className="absolute w-[300px] h-[300px] top-[-150px] left-[-100px] bg-gradient-to-br from-white/5 to-transparent rounded-full blur-3xl pointer-events-none hidden lg:block"></div>
         </div>
 
-        <div className="flex w-full lg:w-[752px] items-center justify-between relative flex-[0_0_auto] flex-col sm:flex-row gap-4 sm:gap-0 pt-8 border-t border-[#ffffff1a]">
+        </div>
+      </div>
+      
+      {/* Bottom section */}
+      <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-8 lg:px-16">
+        <div className="flex w-full items-center justify-between relative flex-[0_0_auto] flex-col sm:flex-row gap-4 sm:gap-0 pt-8 border-t border-[#ffffff1a]">
           <div className="leading-[18px] relative w-fit mt-[-1.00px] opacity-40 [font-family:'Poppins',Helvetica] font-normal text-shades-0 text-xs tracking-[0]">
             © 2024 —&nbsp;&nbsp;Promptverse AI
           </div>

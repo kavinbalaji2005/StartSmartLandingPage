@@ -8,12 +8,39 @@
 
   body {
     overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   /* Backdrop filter fallback */
   @supports not (backdrop-filter: blur(10px)) {
     .backdrop-blur-md {
       background-color: rgba(0, 0, 0, 0.8) !important;
+    }
+  }
+
+  /* Improved text rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Better focus states */
+  *:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Improved button and interactive element accessibility */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  @media (max-width: 640px) {
+    button, a {
+      min-height: 48px;
+      min-width: 48px;
     }
   }
 }
@@ -25,6 +52,32 @@
 
   .container-responsive {
     @apply w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Improved marquee animation performance */
+  .animate-marquee {
+    will-change: transform;
+  }
+
+  /* Better responsive text scaling */
+  .text-responsive-xl {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  .text-responsive-4xl {
+    @apply text-2xl md:text-4xl lg:text-5xl;
+  }
+
+  .text-responsive-5xl {
+    @apply text-3xl md:text-5xl lg:text-6xl;
   }
 }
 

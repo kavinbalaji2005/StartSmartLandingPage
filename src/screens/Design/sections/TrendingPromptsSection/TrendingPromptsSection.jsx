@@ -82,11 +82,163 @@ export const TrendingPromptsSection = () => {
   }, [isMobileMenuOpen]);
 
   return (
-    <section className="relative w-full min-h-screen bg-black overflow-hidden">
+    <section className="relative w-full min-h-screen bg-black overflow-hidden flex flex-col">
+      {/* Navigation */}
+      <nav className="relative z-50 w-full bg-black/80 backdrop-blur-md border-b border-white/10 supports-[backdrop-filter]:bg-black/60">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 transition-colors"
+                aria-expanded={isMobileMenuOpen}
+                aria-label="Toggle navigation menu"
+              >
+                <svg
+                  className={`${
+                    isMobileMenuOpen ? "hidden" : "block"
+                  } h-6 w-6`}
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+                <svg
+                  className={`${
+                    isMobileMenuOpen ? "block" : "hidden"
+                  } h-6 w-6`}
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Desktop Left Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigationItems.map((item, index) => (
+                <a
+                  key={`nav-${index}`}
+                  href="#"
+                  className="text-white hover:text-white/80 px-3 py-2 text-sm font-medium transition-colors duration-200 [font-family:'Poppins',Helvetica]"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Logo - Centered on mobile, normal position on desktop */}
+            <div className="flex items-center space-x-3 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                <svg
+                  className="w-5 h-5 lg:w-6 lg:h-6 text-black"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+              <span className="text-white font-semibold text-lg lg:text-xl [font-family:'Manrope',Helvetica] whitespace-nowrap">
+                Start Smart
+              </span>
+            </div>
+
+            {/* Desktop Right Navigation & CTA */}
+            <div className="hidden lg:flex items-center space-x-6">
+              {rightNavigationItems.map((item, index) => (
+                <a
+                  key={`right-nav-${index}`}
+                  href="#"
+                  className="text-white hover:text-white/80 px-3 py-2 text-sm font-medium transition-colors duration-200 [font-family:'Poppins',Helvetica]"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button className="bg-white hover:bg-white/90 text-black px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 shadow-lg hover:shadow-xl">
+                <span className="[font-family:'Poppins',Helvetica]">
+                  Get Started
+                </span>
+                <ArrowUpIcon className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+
+            {/* Mobile CTA */}
+            <div className="lg:hidden">
+              <Button className="bg-white hover:bg-white/90 text-black px-4 py-2 rounded-full font-medium text-sm transition-all duration-200">
+                <span className="[font-family:'Poppins',Helvetica]">
+                  Start
+                </span>
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Menu Panel */}
+          <div
+            className={`lg:hidden transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen
+                ? "max-h-96 opacity-100"
+                : "max-h-0 opacity-0 overflow-hidden"
+            }`}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-black/95 backdrop-blur-md rounded-lg mt-2 border border-white/10 shadow-xl">
+              {navigationItems.map((item, index) => (
+                <a
+                  key={`mobile-nav-${index}`}
+                  href="#"
+                  className="text-white hover:text-white/80 hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 block px-3 py-2 rounded-md text-sm font-medium transition-colors [font-family:'Poppins',Helvetica]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <hr className="border-white/20 my-2" />
+              {rightNavigationItems.map((item, index) => (
+                <a
+                  key={`mobile-right-nav-${index}`}
+                  href="#"
+                  className="text-white hover:text-white/80 hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 block px-3 py-2 rounded-md text-sm font-medium transition-colors [font-family:'Poppins',Helvetica]"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="pt-2">
+                <Button className="w-full bg-white hover:bg-white/90 focus:ring-2 focus:ring-white/50 text-black py-2.5 rounded-full font-medium text-sm transition-all duration-200">
+                  <span className="[font-family:'Poppins',Helvetica]">
+                    Get Started
+                  </span>
+                  <ArrowUpIcon className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Content */}
       <div className="relative w-full min-h-screen">
-        <div className="absolute w-full h-full top-0 left-0">
-          <div className="absolute w-full min-h-[924px] top-[100px] left-0 flex items-center justify-center pt-16">
-            <div className="flex flex-col w-full max-w-[878px] items-center gap-8 md:gap-12 px-4 md:px-8">
+        <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center">
+          <div className="flex flex-col w-full max-w-[878px] items-center gap-8 md:gap-12 px-4 md:px-8 py-16 md:py-24">
               <div className="flex flex-col items-center gap-7 relative w-full">
                 <div className="inline-flex flex-col items-center gap-2 relative">
                   <div className="relative w-fit mt-[-1.00px] [font-family:'Manrope',Helvetica] font-semibold text-white text-lg md:text-[22px] tracking-[-0.40px] leading-[normal]">
@@ -100,7 +252,7 @@ export const TrendingPromptsSection = () => {
                   </h1>
                 </div>
 
-                <p className="relative w-full max-w-[735px] [font-family:'Manrope',Helvetica] font-normal text-[#ffffff99] text-sm md:text-base text-center tracking-[-0.29px] leading-6 md:leading-7 px-4">
+                <p className="relative w-full max-w-[735px] [font-family:'Manrope',Helvetica] font-normal text-[#ffffff99] text-sm md:text-base text-center tracking-[-0.29px] leading-6 md:leading-7">
                   Welcome to PromptVerse. Effortlessly create content, explore
                   endless prompts, and stay ahead with real-time trends.
                   Automate emails, social media, and more while our AI extracts
@@ -130,189 +282,39 @@ export const TrendingPromptsSection = () => {
               </div>
             </div>
 
-            {/* CSS Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-50 pointer-events-none"></div>
-
-            {starElements.map((star, index) => (
-              <div
-                key={`star-${index}`}
-                className={`absolute ${star.size} ${star.position} ${
-                  star.mobilePosition === "hidden" ? "hidden lg:block" : ""
-                } flex items-center justify-center`}
-              >
-                <svg
-                  className="w-full h-full text-white/20"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
-                </svg>
-              </div>
-            ))}
           </div>
+        </div>
 
-          {/* CSS Star decoration */}
-          <div className="absolute w-4 h-4 top-[130px] left-[122px] flex items-center justify-center">
+        {/* Background decorations */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-50 pointer-events-none"></div>
+        
+        {starElements.map((star, index) => (
+          <div
+            key={`star-${index}`}
+            className={`absolute ${star.size} ${star.position} ${
+              star.mobilePosition === "hidden" ? "hidden lg:block" : ""
+            } flex items-center justify-center`}
+          >
             <svg
-              className="w-full h-full text-white/30"
+              className="w-full h-full text-white/20"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
               <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
             </svg>
           </div>
+        ))}
+
+        {/* Additional star decoration */}
+        <div className="absolute w-4 h-4 top-[130px] left-[122px] flex items-center justify-center hidden lg:flex">
+          <svg
+            className="w-full h-full text-white/30"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+          </svg>
         </div>
-
-        <nav className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md border-b border-white/10 supports-[backdrop-filter]:bg-black/60">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16 lg:h-20">
-              {/* Mobile Menu Button */}
-              <div className="lg:hidden">
-                <button
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/20 transition-colors"
-                  aria-expanded={isMobileMenuOpen}
-                  aria-label="Toggle navigation menu"
-                >
-                  <svg
-                    className={`${
-                      isMobileMenuOpen ? "hidden" : "block"
-                    } h-6 w-6`}
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                  <svg
-                    className={`${
-                      isMobileMenuOpen ? "block" : "hidden"
-                    } h-6 w-6`}
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Desktop Left Navigation */}
-              <div className="hidden lg:flex items-center space-x-8">
-                {navigationItems.map((item, index) => (
-                  <a
-                    key={`nav-${index}`}
-                    href="#"
-                    className="text-white hover:text-white/80 px-3 py-2 text-sm font-medium transition-colors duration-200 [font-family:'Poppins',Helvetica]"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-
-              {/* Logo - Centered on mobile, normal position on desktop */}
-              <div className="flex items-center space-x-3 lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2">
-                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-white rounded-lg flex items-center justify-center shadow-lg">
-                  <svg
-                    className="w-5 h-5 lg:w-6 lg:h-6 text-black"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <span className="text-white font-semibold text-lg lg:text-xl [font-family:'Manrope',Helvetica] whitespace-nowrap">
-                  Start Smart
-                </span>
-              </div>
-
-              {/* Desktop Right Navigation & CTA */}
-              <div className="hidden lg:flex items-center space-x-6">
-                {rightNavigationItems.map((item, index) => (
-                  <a
-                    key={`right-nav-${index}`}
-                    href="#"
-                    className="text-white hover:text-white/80 px-3 py-2 text-sm font-medium transition-colors duration-200 [font-family:'Poppins',Helvetica]"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <Button className="bg-white hover:bg-white/90 text-black px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-200 shadow-lg hover:shadow-xl">
-                  <span className="[font-family:'Poppins',Helvetica]">
-                    Get Started
-                  </span>
-                  <ArrowUpIcon className="w-4 h-4 ml-2" />
-                </Button>
-              </div>
-
-              {/* Mobile CTA */}
-              <div className="lg:hidden">
-                <Button className="bg-white hover:bg-white/90 text-black px-4 py-2 rounded-full font-medium text-sm transition-all duration-200">
-                  <span className="[font-family:'Poppins',Helvetica]">
-                    Start
-                  </span>
-                </Button>
-              </div>
-            </div>
-
-            {/* Mobile Menu Panel */}
-            <div
-              className={`lg:hidden transition-all duration-300 ease-in-out ${
-                isMobileMenuOpen
-                  ? "max-h-96 opacity-100"
-                  : "max-h-0 opacity-0 overflow-hidden"
-              }`}
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-black/95 backdrop-blur-md rounded-lg mt-2 border border-white/10 shadow-xl">
-                {navigationItems.map((item, index) => (
-                  <a
-                    key={`mobile-nav-${index}`}
-                    href="#"
-                    className="text-white hover:text-white/80 hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 block px-3 py-2 rounded-md text-sm font-medium transition-colors [font-family:'Poppins',Helvetica]"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <hr className="border-white/20 my-2" />
-                {rightNavigationItems.map((item, index) => (
-                  <a
-                    key={`mobile-right-nav-${index}`}
-                    href="#"
-                    className="text-white hover:text-white/80 hover:bg-white/10 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20 block px-3 py-2 rounded-md text-sm font-medium transition-colors [font-family:'Poppins',Helvetica]"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <div className="pt-2">
-                  <Button className="w-full bg-white hover:bg-white/90 focus:ring-2 focus:ring-white/50 text-black py-2.5 rounded-full font-medium text-sm transition-all duration-200">
-                    <span className="[font-family:'Poppins',Helvetica]">
-                      Get Started
-                    </span>
-                    <ArrowUpIcon className="w-4 h-4 ml-2" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
       </div>
     </section>
   );
